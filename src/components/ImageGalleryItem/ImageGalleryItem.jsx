@@ -6,7 +6,7 @@ export const ImageGalleryItem = ({ imageData }) => {
 
   return (
     <li className={s.galleryItem}>
-      <Link to={`image/${id}`}>
+      <Link to={`photos/${id}`}>
         <img id={id} loading="lazy" src={urls.small} alt={alt_description} />
       </Link>
     </li>

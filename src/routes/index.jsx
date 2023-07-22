@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: '/image/:id',
+        path: '/photos/:slug',
         element: <ImageDetailsPage />,
       },
     ],

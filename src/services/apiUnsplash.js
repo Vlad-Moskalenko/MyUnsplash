@@ -11,6 +11,10 @@ class APIUnsplash {
   getImages = page => {
     return axiosInstance.get('/photos', { params: { page } });
   };
+
+  getImageDetails = slug => {
+    return axiosInstance.get(`/photos/${slug}`);
+  };
 }
 
 export const apiUnsplash = new APIUnsplash();
