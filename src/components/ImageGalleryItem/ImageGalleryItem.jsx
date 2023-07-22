@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import s from './ImageItem.module.css';
+import s from './ImageGalleryItem.module.css';
 
-export const ImageItem = ({ imageData }) => {
-  const { id, alt_description, description, likes, urls } = imageData;
+export const ImageGalleryItem = ({ imageData }) => {
+  const { id, alt_description, urls } = imageData;
 
   return (
-    <li className={s.card}>
+    <li className={s.galleryItem}>
       <Link to={`image/${id}`}>
         <img loading="lazy" src={urls.small} alt={alt_description} />
       </Link>
