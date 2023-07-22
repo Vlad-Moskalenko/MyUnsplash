@@ -1,7 +1,14 @@
-const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
-}
+import { useEffect, useState } from 'react';
+import { apiUnsplash } from 'services/apiUnsplash';
 
-export default HomePage
+const HomePage = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    apiUnsplash.getAllImages().then(data => setImages(data));
+  }, []);
+
+  return <div>HomePage</div>;
+};
+
+export default HomePage;
