@@ -8,8 +8,8 @@ const axiosInstance = axios.create({
 });
 
 class APIUnsplash {
-  getAllImages = () => {
-    return axiosInstance.get('/photos').then(res => res.data);
+  getImages = page => {
+    return axiosInstance.get('/photos', { params: { page } });
   };
 }
 

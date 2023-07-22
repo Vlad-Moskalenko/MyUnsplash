@@ -1,18 +1,8 @@
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-import { useEffect, useState } from 'react';
-import { apiUnsplash } from 'services/apiUnsplash';
 
 import s from './ImageGallery.module.css';
 
-export const ImagesGallery = ({ columnCount }) => {
-  const [images, setImages] = useState([]);
-
-  useEffect(() => {
-    apiUnsplash.getAllImages().then(newImages => {
-      setImages(newImages);
-    });
-  }, []);
-
+export const ImagesGallery = ({ columnCount, images }) => {
   return (
     <ul className={s.gallery} style={{ columnCount: columnCount }}>
       {images.length > 0 &&
