@@ -1,14 +1,19 @@
-import { useEffect, useState } from 'react';
-import { apiUnsplash } from 'services/apiUnsplash';
+import { ColumnCountBtn } from 'components/ColumnCountBtn/ColumnCountBtn';
+import { ImagesGallery } from 'components/ImagesGallery/ImagesGallery';
+import { useState } from 'react';
 
 const HomePage = () => {
-  const [images, setImages] = useState([]);
+  const [columnCount, setColumnCount] = useState(3);
 
-  useEffect(() => {
-    apiUnsplash.getAllImages().then(data => setImages(data));
-  }, []);
-
-  return <div>HomePage</div>;
+  return (
+    <>
+      <ColumnCountBtn
+        columnCount={columnCount}
+        setColumnCount={setColumnCount}
+      />
+      <ImagesGallery columnCount={columnCount} />;
+    </>
+  );
 };
 
 export default HomePage;
