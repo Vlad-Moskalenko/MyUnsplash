@@ -9,11 +9,24 @@ const axiosInstance = axios.create({
 
 class APIUnsplash {
   getImages = page => {
-    return axiosInstance.get('/photos', { params: { page } });
+    return axiosInstance
+      .get('/photos', { params: { page } })
+      .then(resp => resp.data);
   };
 
   getImageDetails = slug => {
     return axiosInstance.get(`/photos/${slug}`);
+  };
+
+  getImagesByTag = (tag, page) => {
+    return axiosInstance
+      .get('/search/photos', {
+        params: {
+          query: tag,
+          page,
+        },
+      })
+      .then(resp => resp.data.results);
   };
 }
 

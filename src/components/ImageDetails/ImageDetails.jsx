@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 export const ImageDetails = ({ imageDetails }) => {
   const { description, alt_description, downloads, likes, tags, urls } =
     imageDetails;
+
+  console.log(imageDetails);
   return (
     <main>
       <img src={urls?.regular} alt={alt_description} />
@@ -9,7 +13,9 @@ export const ImageDetails = ({ imageDetails }) => {
       <p>Likes: {likes}</p>
       <ul>
         {tags.map(tag => (
-          <li key={tag.title}>{tag.title}</li>
+          <li key={tag.title}>
+            <Link to={`/${tag.title}`}>@{tag.title}</Link>
+          </li>
         ))}
       </ul>
     </main>

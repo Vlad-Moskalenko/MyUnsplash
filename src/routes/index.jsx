@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
         path: '/photos/:slug',
         element: <ImageDetailsPage />,
       },
+      {
+        path: '/:tag',
+        element: <HomePage />,
+      },
     ],
   },
 ]);

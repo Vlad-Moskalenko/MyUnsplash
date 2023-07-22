@@ -1,6 +1,7 @@
 import { ColumnCountBtn } from 'components/ColumnCountBtn/ColumnCountBtn';
 import { ImagesGallery } from 'components/ImagesGallery/ImagesGallery';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { apiUnsplash } from 'services/apiUnsplash';
 
 const HomePage = () => {
@@ -8,17 +9,20 @@ const HomePage = () => {
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
+  // const [totalCount, setTotalCount] = useState(0);
+  const { tag } = useParams();
+
+  const fetchImages = tag
+    ? apiUnsplash.getImagesByTag(tag, currentPage)
+    : apiUnsplash.getImages(currentPage);
 
   useEffect(() => {
     if (fetching) {
-      apiUnsplash
-        .getImages(currentPage)
-        .then(res => {
-          setImages(prevImages => [...prevImages, ...res.data]);
+      fetchImages
+        .then(data => {
+          setImages(prevImages => [...prevImages, ...data]);
           setCurrentPage(prevState => prevState + 1);
-          console.log(images);
-          setTotalCount(res.headers['x-total']);
+          // setTotalCount(resp.headers['x-total']);
         })
         .finally(() => {
           setFetching(false);
