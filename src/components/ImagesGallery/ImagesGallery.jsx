@@ -2,6 +2,8 @@ import { ImageItem } from 'components/ImageItem/ImageItem';
 import { useEffect, useState } from 'react';
 import { apiUnsplash } from 'services/apiUnsplash';
 
+import s from './ImageGallery.module.css';
+
 export const ImagesGallery = ({ columnCount }) => {
   const [images, setImages] = useState([]);
 
@@ -12,7 +14,7 @@ export const ImagesGallery = ({ columnCount }) => {
   }, []);
 
   return (
-    <ul style={{ columnCount: columnCount }}>
+    <ul className={s.gallery} style={{ columnCount: columnCount }}>
       {images.length > 0 &&
         images.map(image => <ImageItem key={image.id} imageData={image} />)}
     </ul>

@@ -1,0 +1,5 @@
+.gallery {
+  padding: 0px 15px;
+  column-count: 2;
+  column-gap: 15px;
+}
