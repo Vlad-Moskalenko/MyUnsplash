@@ -1,5 +1,7 @@
 .gallery {
-  padding: 0px 15px;
-  column-count: 2;
+  margin: 0 auto;
+  padding: 20px;
+
+  max-width: 1440px;
   column-gap: 15px;
 }

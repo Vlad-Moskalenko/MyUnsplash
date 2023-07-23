@@ -1,0 +1,53 @@
+.main {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.imageMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.imageWrapper {
+  max-width: 400px
+}
+
+.imageWrapper img {
+  object-fit: cover;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tagsList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tagItem {
+  padding: 5px;
+
+  border-radius: 10px;
+  color: rgb(118, 118, 118);
+  border: 1px solid rgb(118, 118, 118);
+  background-color: rgb(248, 245, 245);
+
+  transition: color 0.2s linear, border 0.2s linear;
+}
+
+.tagItem:hover,
+.tagItem:focus {
+  color: #000;
+  border-color: #000;
+}
+

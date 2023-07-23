@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom';
 import s from './ImageGalleryItem.module.css';
 
 export const ImageGalleryItem = ({ imageData }) => {
-  const { id, alt_description, urls } = imageData.cover_photo
-    ? imageData.cover_photo
-    : imageData;
+  const { id, alt_description, urls } = imageData?.cover_photo || imageData;
 
   return (
     <li className={s.galleryItem}>
