@@ -15,7 +15,7 @@ class APIUnsplash {
   };
 
   getImageDetails = slug => {
-    return axiosInstance.get(`/photos/${slug}`);
+    return axiosInstance.get(`/photos/${slug}`).then(resp => resp.data);
   };
 
   getImagesByTag = (tag, page) => {

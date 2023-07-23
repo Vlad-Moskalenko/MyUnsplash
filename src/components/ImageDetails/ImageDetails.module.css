@@ -35,19 +35,20 @@
 }
 
 .tagItem {
-  padding: 5px;
+  padding: 8px;
+
+  border-radius: 2px;
+  text-transform: capitalize;
 
   border-radius: 10px;
   color: rgb(118, 118, 118);
-  border: 1px solid rgb(118, 118, 118);
-  background-color: rgb(248, 245, 245);
-
-  transition: color 0.2s linear, border 0.2s linear;
+  background-color: rgb(238, 238, 238);
+  transition: all .1s ease-in-out;
 }
 
 .tagItem:hover,
 .tagItem:focus {
-  color: #000;
-  border-color: #000;
+  color: rgb(0, 0, 0);
+  background-color: rgb(225, 225, 225);
 }
 

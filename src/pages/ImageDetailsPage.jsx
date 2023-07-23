@@ -8,7 +8,7 @@ const ImageDetailsPage = () => {
   const [imageDetails, setImageDetails] = useState(null);
 
   useEffect(() => {
-    apiUnsplash.getImageDetails(slug).then(resp => setImageDetails(resp.data));
+    apiUnsplash.getImageDetails(slug).then(data => setImageDetails(data));
   }, [slug]);
 
   return <>{imageDetails && <ImageDetails imageDetails={imageDetails} />}</>;

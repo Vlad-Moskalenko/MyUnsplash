@@ -14,8 +14,6 @@ export const ImageDetails = ({ imageDetails }) => {
     user,
   } = imageDetails;
 
-  console.log(imageDetails);
-
   return (
     <main className={s.main}>
       <div className={s.imageWrapper}>
