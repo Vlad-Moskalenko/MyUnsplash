@@ -1,9 +1,10 @@
+import { SearchBar } from 'components/SearchBar/SearchBar';
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
     <>
-      <div>Layout</div>
+      <SearchBar />
       <Outlet />
     </>
   );

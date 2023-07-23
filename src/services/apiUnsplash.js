@@ -20,9 +20,20 @@ class APIUnsplash {
 
   getImagesByTag = (tag, page) => {
     return axiosInstance
-      .get('/search/photos', {
+      .get('/search/collections', {
         params: {
           query: tag,
+          page,
+        },
+      })
+      .then(resp => resp.data.results);
+  };
+
+  getImagesByQuery = (query, page) => {
+    return axiosInstance
+      .get('/search/photos', {
+        params: {
+          query,
           page,
         },
       })
