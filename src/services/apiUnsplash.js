@@ -4,7 +4,7 @@ const axiosInstance = axios.create({
   baseURL: 'https://api.unsplash.com/',
   params: {
     client_id: 'RettGyNtRcGqCERFzZOsyzJBIV7ZE_7YeW-8H6ix8B0',
-    per_page: 20,
+    per_page: 6,
   },
 });
 

@@ -21,22 +21,22 @@ export const ImageDetails = ({ imageDetails }) => {
       </div>
       <div className={s.imageMeta}>
         <p>
-          <b>Author:</b> {user.first_name + ' ' + user.last_name}
+          <strong>Author:</strong> {user.first_name + ' ' + user.last_name}
         </p>
         <p>
-          <b>Description:</b> {description || alt_description}
+          <strong>Description:</strong> {description || alt_description}
         </p>
-        <p className={s.meta}>
-          <span>
+        <ul className={s.meta}>
+          <li>
             <b>Downloads:</b> {downloads}
-          </span>
-          <span>
+          </li>
+          <li>
             <b>Likes:</b> {likes}
-          </span>
-          <span>
+          </li>
+          <li>
             <b>Views:</b> {views}
-          </span>
-        </p>
+          </li>
+        </ul>
         <ul className={s.tagsList}>
           {tags.map(tag => (
             <li className={s.tagItem} key={tag.title}>

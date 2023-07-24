@@ -1,5 +1,6 @@
-import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { splitArrayToSubArray } from 'utils/splitArrayToSubArrays';
+
+import { ImageGalleryItem } from 'components';
 
 import s from './ImageGallery.module.css';
 

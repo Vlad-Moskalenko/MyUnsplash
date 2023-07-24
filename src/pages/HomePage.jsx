@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { apiUnsplash } from 'services/apiUnsplash';
@@ -7,42 +7,39 @@ import { ColumnCountBtn, ImagesGallery, InfiniteScroll } from 'components';
 
 const HomePage = () => {
   const [columnCount, setColumnCount] = useState(3);
+  const [isFetching, setIsFetching] = useState(false);
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
-  // const [totalCount, setTotalCount] = useState(0);
+  const [searchParams] = useSearchParams();
   const { tag } = useParams();
   const query = searchParams.get('query') ?? '';
 
-  const fetchImages = useCallback(() => {
-    setFetching(true);
-    if (tag) return apiUnsplash.getImagesByTag(tag, currentPage);
-    if (query) return apiUnsplash.getImagesByQuery(query, currentPage);
-    return apiUnsplash.getImages(currentPage);
-  }, [currentPage, query, tag]);
+  const fetchImages = () => {
+    switch (true) {
+      case !!query:
+        return apiUnsplash.getImagesByQuery(query, currentPage);
+      case !!tag:
+        return apiUnsplash.getImagesByTag(tag, currentPage);
+      default:
+        return apiUnsplash.getImages(currentPage);
+    }
+  };
 
   useEffect(() => {
-    if (query) {
-      setImages([]);
-      setCurrentPage(1);
-      setFetching(true);
-    }
-  }, [query]);
+    setCurrentPage(1);
+    setImages([]);
+  }, [query, tag]);
 
   useEffect(() => {
-    if (fetching) {
-      fetchImages()
-        .then(data => {
-          setImages(prevImages => [...new Set([...prevImages, ...data])]);
-          setCurrentPage(prevState => prevState + 1);
-          // setTotalCount(resp.headers['x-total']);
-        })
-        .finally(() => {
-          setFetching(false);
-        });
-    }
-  }, [fetching, query, tag, fetchImages]);
+    setIsFetching(true);
+    fetchImages()
+      .then(data =>
+        setImages(prevImages => [...new Set([...prevImages, ...data])])
+      )
+      .catch(err => console.log(err.message))
+      .finally(() => setIsFetching(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
 
   return (
     <main>
@@ -50,9 +47,8 @@ const HomePage = () => {
         columnCount={columnCount}
         setColumnCount={setColumnCount}
       />
-      <InfiniteScroll setFetching={setFetching}>
-        <ImagesGallery columnCount={columnCount} images={images} />;
-      </InfiniteScroll>
+      <ImagesGallery columnCount={columnCount} images={images} />
+      <InfiniteScroll setCurrentPage={setCurrentPage} isFetching={isFetching} />
     </main>
   );
 };

@@ -1,23 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-export const InfiniteScroll = ({ setFetching, children }) => {
+import s from './InfiniteScroll.module.css';
+
+export const InfiniteScroll = ({ setCurrentPage, isFetching }) => {
+  const observerTarget = useRef(null);
+
   useEffect(() => {
-    document.addEventListener('scroll', scrollHandler);
-    return () => {
-      document.removeEventListener('scroll', scrollHandler);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setCurrentPage(prevPage => prevPage + 1);
+        }
+      },
+      { threshold: 1 }
+    );
 
-  const scrollHandler = e => {
-    const scrollHeight = e.target.documentElement.scrollHeight;
-    const scrollTop = e.target.documentElement.scrollTop;
-    const innerHeight = window.innerHeight;
-
-    if (scrollHeight - (scrollTop + innerHeight) < 100) {
-      setFetching(true);
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
     }
-  };
 
-  return <>{children}</>;
+    return () => {
+      if (observerTarget.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, [observerTarget, setCurrentPage]);
+
+  return (
+    <>
+      {isFetching && <p className={s.loader}>Loading...</p>}
+      <div ref={observerTarget}></div>
+    </>
+  );
 };
