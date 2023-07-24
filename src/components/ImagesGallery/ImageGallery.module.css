@@ -1,6 +1,5 @@
 .gallery {
   margin: 0 auto;
-  padding: 20px;
 
   max-width: 1440px;
 
@@ -8,6 +7,10 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
   justify-items: center;
   gap: 20px;
+}
+
+.notFoundMsg {
+  text-align: center;
 }
 
 @media screen and (min-width: 475px){

@@ -19,14 +19,13 @@ export const ImagesGallery = ({ columnCount, images }) => {
           : null
       }
     >
-      {images.length > 0 &&
-        splitArrayToSubArray(images, columnCount).map((splitImages, index) => (
-          <ul key={index}>
-            {splitImages.map(image => (
-              <ImageGalleryItem key={image.id} imageData={image} />
-            ))}
-          </ul>
-        ))}
+      {splitArrayToSubArray(images, columnCount).map((splitImages, index) => (
+        <ul key={index}>
+          {splitImages.map(image => (
+            <ImageGalleryItem key={image.id} imageData={image} />
+          ))}
+        </ul>
+      ))}
     </div>
   );
 };

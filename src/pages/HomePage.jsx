@@ -7,6 +7,7 @@ import { ColumnCountBtn, ImagesGallery, InfiniteScroll } from 'components';
 
 const HomePage = () => {
   const [columnCount, setColumnCount] = useState(3);
+  const [error, setError] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const [images, setImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,10 +34,11 @@ const HomePage = () => {
   useEffect(() => {
     setIsFetching(true);
     fetchImages()
-      .then(data =>
-        setImages(prevImages => [...new Set([...prevImages, ...data])])
-      )
-      .catch(err => console.log(err.message))
+      .then(data => {
+        setImages(prevImages => [...new Set([...prevImages, ...data])]);
+        setError(null);
+      })
+      .catch(err => setError(err.response.data))
       .finally(() => setIsFetching(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
@@ -49,6 +51,7 @@ const HomePage = () => {
       />
       <ImagesGallery columnCount={columnCount} images={images} />
       <InfiniteScroll setCurrentPage={setCurrentPage} isFetching={isFetching} />
+      <p className="error">{error}</p>
     </main>
   );
 };

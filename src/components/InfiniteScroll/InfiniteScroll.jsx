@@ -12,7 +12,7 @@ export const InfiniteScroll = ({ setCurrentPage, isFetching }) => {
           setCurrentPage(prevPage => prevPage + 1);
         }
       },
-      { threshold: 1 }
+      { threshold: 0 }
     );
 
     if (observerTarget.current) {
