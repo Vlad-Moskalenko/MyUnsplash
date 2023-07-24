@@ -3,5 +3,8 @@
   padding: 20px;
 
   max-width: 1440px;
-  column-gap: 15px;
+
+  display: grid;
+  justify-items: center;
+  gap: 20px;
 }

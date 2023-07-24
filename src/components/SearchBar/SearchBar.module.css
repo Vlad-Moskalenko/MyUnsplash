@@ -57,3 +57,7 @@
   text-transform: capitalize;
   cursor: pointer;
 }
+
+.homeLink {
+  margin-right: 30px;
+}
