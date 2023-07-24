@@ -63,8 +63,7 @@ button {
 }
 
 .error {
-  margin: auto;
-  display: flex;
+  margin-top: 60px;
   color: red;
   text-align: center;
 }

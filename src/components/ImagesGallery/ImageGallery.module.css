@@ -5,6 +5,14 @@
   max-width: 1440px;
 
   display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   justify-items: center;
   gap: 20px;
 }
+
+@media screen and (min-width: 475px){
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+

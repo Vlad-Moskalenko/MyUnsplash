@@ -3,12 +3,21 @@ import { splitArrayToSubArray } from 'utils/splitArrayToSubArrays';
 import { ImageGalleryItem } from 'components';
 
 import s from './ImageGallery.module.css';
+import { useMediaQuery } from 'hooks/useMediaQuery';
 
 export const ImagesGallery = ({ columnCount, images }) => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
   return (
     <div
       className={s.gallery}
-      style={{ gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))` }}
+      style={
+        isDesktop
+          ? {
+              gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+            }
+          : null
+      }
     >
       {images.length > 0 &&
         splitArrayToSubArray(images, columnCount).map((splitImages, index) => (
